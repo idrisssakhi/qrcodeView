@@ -13,7 +13,7 @@ class MainComponentsRegistry
  public:
   // Adapt it to the package you used for your Java class.
   constexpr static auto kJavaDescriptor =
-      "Lcom/example/reactnativeqrcodeview/newarchitecture/components/MainComponentsRegistry;";
+      "Lcom/example/qrcode/view/newarchitecture/components/MainComponentsRegistry;";
 
   static void registerNatives();
 

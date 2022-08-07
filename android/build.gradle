@@ -123,8 +123,10 @@ repositories {
 
 
 dependencies {
-    //noinspection GradleDynamicVersion
+  //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
+  // For QRCode generation
+  implementation "com.google.zxing:core:3.5.0"
 // From node_modules
 }
 
@@ -132,6 +134,6 @@ if (isNewArchitectureEnabled()) {
   react {
     jsRootDir = file("../src/")
     libraryName = "Qrcodeview"
-    codegenJavaPackageName = "com.reactnativeqrcodeview"
+    codegenJavaPackageName = "com.qrcode.view"
   }
 }

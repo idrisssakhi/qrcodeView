@@ -1,4 +1,4 @@
-package com.example.reactnativeqrcodeview;
+package com.example.qrcode.view;
 
 import android.app.Application;
 import android.content.Context;
@@ -9,7 +9,9 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
-import com.example.reactnativeqrcodeview.newarchitecture.MainApplicationReactNativeHost;
+import com.example.qrcodeview.newarchitecture.MainApplicationReactNativeHost;
+import com.qrcode.view.QRCodePackage;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -27,7 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
           @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
-          // packages.add(new MyReactNativePackage());
+          packages.add(new QRCodePackage());
           return packages;
         }
 
@@ -73,7 +75,7 @@ public class MainApplication extends Application implements ReactApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.example.reactnativeqrcodeview.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("com.example.qrcode.view.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);

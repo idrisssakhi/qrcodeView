@@ -53,7 +53,7 @@ yarn test
 ```
 To edit the Objective-C files, open `example/ios/QrcodeviewExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > react-native-qrcodeview`.
 
-To edit the Kotlin files, open `example/android` in Android studio and find the source files at `reactnativeqrcodeview` under `Android`.
+To edit the Kotlin files, open `example/android` in Android studio and find the source files at `qrcodeview` under `Android`.
 ### Commit message convention
 
 We follow the [conventional commits specification](https://www.conventionalcommits.org/en) for our commit messages:

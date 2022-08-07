@@ -1,4 +1,4 @@
-package com.example.reactnativeqrcodeview.newarchitecture;
+package com.example.qrcodeview.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.example.reactnativeqrcodeview.BuildConfig;
-import com.example.reactnativeqrcodeview.newarchitecture.components.MainComponentsRegistry;
-import com.example.reactnativeqrcodeview.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.example.qrcode.view.BuildConfig;
+import com.example.qrcodeview.newarchitecture.components.MainComponentsRegistry;
+import com.example.qrcodeview.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

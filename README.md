@@ -9,11 +9,16 @@ npm install react-native-qrcodeview
 ## Usage
 
 ```js
-import { QrcodeviewView } from "react-native-qrcodeview";
+import QRCodeView from "react-native-qrcodeview";
 
 // ...
 
-<QrcodeviewView color="tomato" />
+    <QRCodeView
+        qrCodeValue={qrCodeValue}
+        style={styles.box}
+        key="QrCodeView"
+        size={200}
+    />
 ```
 
 ## Contributing
@@ -23,7 +28,3 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 ## License
 
 MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)

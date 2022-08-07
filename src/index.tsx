@@ -1,8 +1,7 @@
-import {
+import React, {
   requireNativeComponent,
-  UIManager,
   Platform,
-  ViewStyle,
+  ViewProps,
 } from 'react-native';
 
 const LINKING_ERROR =
@@ -11,16 +10,32 @@ const LINKING_ERROR =
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo managed workflow\n';
 
-type QrcodeviewProps = {
-  color: string;
-  style: ViewStyle;
+interface QRCodeProps extends ViewProps {
+  qrCodeValue: string;
+  size?: number;
+}
+
+const QRCodeView = ({ qrCodeValue, size, ...restProps }: QRCodeProps) => {
+  if (qrCodeValue === '') {
+    throw new Error('value is required to generate QRCode');
+  }
+
+  return (
+    <NativeQRCodeView
+      qrCodeValue={qrCodeValue}
+      size={size}
+      style={[restProps?.style, { backgroundColor: 'transparent' }]}
+      {...restProps}
+    />
+  );
 };
 
-const ComponentName = 'QrcodeviewView';
+const ComponentName = 'QRCodeView';
 
-export const QrcodeviewView =
-  UIManager.getViewManagerConfig(ComponentName) != null
-    ? requireNativeComponent<QrcodeviewProps>(ComponentName)
-    : () => {
-        throw new Error(LINKING_ERROR);
-      };
+const NativeQRCodeView = requireNativeComponent<QRCodeProps>(ComponentName);
+
+if (NativeQRCodeView === null) {
+  throw new Error(LINKING_ERROR);
+}
+
+export default QRCodeView;
