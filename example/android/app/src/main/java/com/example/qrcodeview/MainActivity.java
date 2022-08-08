@@ -3,7 +3,6 @@ package com.example.qrcodeview;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
-import com.qrcode.view.BuildConfig;
 
 public class MainActivity extends ReactActivity {
 

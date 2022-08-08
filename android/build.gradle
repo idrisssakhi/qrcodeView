@@ -133,7 +133,7 @@ dependencies {
 if (isNewArchitectureEnabled()) {
   react {
     jsRootDir = file("../src/")
-    libraryName = "Qrcodeview"
+    libraryName = "QRCodeView"
     codegenJavaPackageName = "com.qrcode.view"
   }
 }
