@@ -1,15 +1,19 @@
-# react-native-qrcodeview
+# react-native-id-qrcodeview
 native view to generate and display qrcodes in native side
 ## Installation
 
 ```sh
-npm install react-native-qrcodeview
+npm install react-native-id-qrcodeview
+```
+
+```sh
+yarn add react-native-id-qrcodeview
 ```
 
 ## Usage
 
 ```js
-import QRCodeView from "react-native-qrcodeview";
+import QRCodeView from "react-native-id-qrcodeview";
 
 // ...
 

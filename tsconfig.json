@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-qrcodeview": ["./src/index"]
+      "react-native-id-qrcodeview": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
