@@ -1,4 +1,4 @@
-package com.partoo.mobile.qrcode.view;
+package com.qrcode.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import QRCodeView from 'react-native-id-qrcodeview';
+import { QRCodeView } from 'react-native-id-qrcodeview';
 
 const App = () => {
   const [value, setValue] = useState('');
