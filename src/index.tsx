@@ -12,27 +12,29 @@ const LINKING_ERROR =
 
 interface QRCodeProps extends ViewProps {
   qrCodeValue: string;
-  size?: number;
+  backgroundColor?: string;
 }
 
-const QRCodeView = ({ qrCodeValue, size, ...restProps }: QRCodeProps) => {
+const QRCodeView = ({
+  qrCodeValue,
+  backgroundColor,
+  ...restProps
+}: QRCodeProps) => {
   if (qrCodeValue === '') {
     throw new Error('value is required to generate QRCode');
   }
 
   return (
     <NativeQRCodeView
-      qrCodeValue={qrCodeValue}
-      size={size}
-      style={[restProps?.style, { backgroundColor: 'transparent' }]}
+      qrCodeValue={qrCodeValue.trim()}
+      backgroundColor={backgroundColor}
+      style={[restProps?.style]}
       {...restProps}
     />
   );
 };
 
-const ComponentName = 'QRCodeView';
-
-const NativeQRCodeView = requireNativeComponent<QRCodeProps>(ComponentName);
+const NativeQRCodeView = requireNativeComponent<QRCodeProps>('QRCodeView');
 
 if (NativeQRCodeView === null) {
   throw new Error(LINKING_ERROR);

@@ -37,7 +37,6 @@ const App = () => {
           qrCodeValue={qrCodeValue}
           style={styles.box}
           key="QrCodeView"
-          size={200}
         />
       )}
     </View>
