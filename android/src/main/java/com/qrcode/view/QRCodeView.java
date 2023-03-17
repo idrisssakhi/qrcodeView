@@ -1,61 +1,75 @@
-package com.qrcode.view;
+package com.partoo.mobile.qrcode.view;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.uimanager.ThemedReactContext;
-import com.facebook.react.views.image.ReactImageView;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
-public class QRCodeView extends ReactImageView {
-    ReactApplicationContext callerContext;
-    ThemedReactContext reactContext;
+import java.util.Objects;
 
-    private int size = 200;
+public class QRCodeView extends View {
     private String value;
+    private String backgroundColor;
 
-    public QRCodeView(ThemedReactContext reactContext, ReactApplicationContext callerContext) {
-        super(reactContext, Fresco.newDraweeControllerBuilder(), null, callerContext);
-        this.callerContext = callerContext;
-        this.reactContext = reactContext;
+    public QRCodeView(Context context) {
+        super(context);
     }
 
-    public void setSize(Integer size) {
-        if (size != this.size) {
-            this.size = size;
-            this.setImageBitmap(generateQRCodeBitmap(this.value));
-        }
+    public QRCodeView(Context context, AttributeSet attributeset) {
+        super(context, attributeset);
+    }
+
+    public QRCodeView(Context context, AttributeSet attributeset, int defStyleAttr) {
+        super(context, attributeset, defStyleAttr);
     }
 
     public void setValue(String value) {
-        if(this.value != value) {
+        if (!Objects.equals(this.value, value)) {
             this.value = value;
-            this.setImageBitmap(generateQRCodeBitmap(this.value));
+            invalidate();
         }
     }
 
-    private Bitmap generateQRCodeBitmap(final String qrCodeValue) {
+    public void setBackgroundColor(String backgroundColor) {
+        if (!Objects.equals(this.backgroundColor, backgroundColor)) {
+            this.backgroundColor = backgroundColor;
+            invalidate();
+        }
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        if (value == null) {
+            super.onDraw(canvas);
+            return;
+        }
+        generateQRCodeBitmap(canvas);
+    }
+
+    private void generateQRCodeBitmap(Canvas canvas) {
         QRCodeWriter writer = new QRCodeWriter();
         try {
-            BitMatrix bitMatrix = writer.encode(qrCodeValue, BarcodeFormat.QR_CODE, this.size, this.size);
-            Bitmap bmp = Bitmap.createBitmap(this.size, this.size, Bitmap.Config.RGB_565);
-            for (int x = 0; x < this.size; x++) {
-                for (int y = 0; y < this.size; y++) {
-                    bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+            BitMatrix bitMatrix = writer.encode(value, BarcodeFormat.QR_CODE, canvas.getWidth(), canvas.getWidth());
+            Bitmap bmp = Bitmap.createBitmap(bitMatrix.getWidth(), bitMatrix.getHeight(), Bitmap.Config.RGB_565);
+            int backgroundColor = this.backgroundColor != null ? Color.parseColor(this.backgroundColor) : Color.WHITE;
+            for (int x = 0; x < canvas.getWidth(); x++) {
+                for (int y = 0; y < canvas.getWidth(); y++) {
+                    bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : backgroundColor);
                 }
             }
             bmp.setDensity(0);
-            return bmp;
+            canvas.drawBitmap(bmp, 0, 0, null);
         } catch (WriterException e) {
             Log.e("QRCodeGenerator", "Error : " + e.getMessage());
             e.printStackTrace();
         }
-        return null;
     }
 }

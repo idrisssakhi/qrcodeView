@@ -10,13 +10,17 @@ import java.util.Collections;
 import java.util.List;
 
 public class QRCodePackage implements ReactPackage {
+    @Nonnull
     @Override
-    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
+    public List<NativeModule> createNativeModules(@Nonnull ReactApplicationContext reactContext) {
         return Collections.emptyList();
     }
 
+    @Nonnull
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-        return Arrays.<ViewManager>asList(new QRCodeViewManager(reactContext));
+        List<ViewManager> viewManagers = new ArrayList<>();
+        viewManagers.add(new QRCodeViewManager());
+        return viewManagers;
     }
 }
