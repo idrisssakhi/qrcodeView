@@ -1,32 +1,23 @@
-import React, {
-  requireNativeComponent,
-  Platform,
-  ViewProps,
-} from 'react-native';
+import React from 'react';
+import { ViewProps, requireNativeComponent } from 'react-native';
 
-const LINKING_ERROR =
-  `The package 'react-native-id-qrcodeview' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
-
-interface QRCodeProps extends ViewProps {
+export interface QRCodeProps extends ViewProps {
   qrCodeValue: string;
   backgroundColor?: string;
 }
 
-const QRCodeView = ({
+export const QRCodeView = ({
   qrCodeValue,
   backgroundColor,
   ...restProps
 }: QRCodeProps) => {
-  if (qrCodeValue === '') {
+  if (qrCodeValue.trim() === '') {
     throw new Error('value is required to generate QRCode');
   }
 
   return (
     <NativeQRCodeView
-      qrCodeValue={qrCodeValue.trim()}
+      qrCodeValue={qrCodeValue}
       backgroundColor={backgroundColor}
       style={[restProps?.style]}
       {...restProps}
@@ -34,10 +25,5 @@ const QRCodeView = ({
   );
 };
 
+// requireNativeComponent automatically resolves 'QRCodeView' to 'QRCodeViewManager'
 const NativeQRCodeView = requireNativeComponent<QRCodeProps>('QRCodeView');
-
-if (NativeQRCodeView === null) {
-  throw new Error(LINKING_ERROR);
-}
-
-export default QRCodeView;
